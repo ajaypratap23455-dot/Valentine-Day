@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Valentine's Journey</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+        }
+
+        .page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 800px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: #ffd700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .love-letter {
+            font-size: 1.5em;
+            line-height: 1.8;
+            font-family: 'Roboto', sans-serif;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .images {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .images img {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .images img:hover {
+            transform: scale(1.1);
+        }
+
+        .floating {
+            position: absolute;
+            font-size: 3em;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .nav {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .nav button {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #2c3e50;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 0 10px;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .nav button:hover {
+            transform: scale(1.1);
+        }
+
+        .nav button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 2em;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Rose Day -->
+    <div class="page active" id="rose-day"
+        style="background-image: url('https://source.unsplash.com/featured/?roses,valentine');">
+        <div class="particles" id="particles-rose"></div>
+        <div class="floating" style="top: 10%; left: 20%;">🌹</div>
+        <div class="floating" style="top: 20%; right: 15%;">💖</div>
+        <div class="glass">
+            <h1>Rose Day</h1>
+            <div class="love-letter">
+                My love, like a rose, you bloom in my heart every day. Your beauty and fragrance fill my world with joy.
+                Happy Rose Day!
+            </div>
+            <div class="images">
+                <img src="images/rose1.jpg" alt="Roses">
+                <img src="images/rose2.jpg" alt="Roses">
+                <img src="images/rose3.jpg" alt="Roses">
+                <img src="images/rose4.jpg" alt="Roses">
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev-rose" disabled>Previous</button>
+            <button id="next-rose">Next</button>
+        </div>
+    </div>
+
+    <!-- Propose Day -->
+    <div class="page" id="propose-day"
+        style="background-image: url('https://source.unsplash.com/featured/?proposal,romance');">
+        <div class="particles" id="particles-propose"></div>
+        <div class="floating" style="top: 15%; left: 25%;">💍</div>
+        <div class="floating" style="top: 25%; right: 20%;">❤️</div>
+        <div class="glass">
+            <h1>Propose Day</h1>
+            <div class="love-letter">
+                Today, I propose a lifetime of love with you. Will you be mine forever? Your smile is my yes!
+            </div>
+            <div class="images">
+                <img src="images/propose1.jpg" alt="Roses">
+                <img src="images/propose2.jpg" alt="Roses">
+                <img src="images/propose3.jpg" alt="Roses">
+                <img src="images/propose4.jpg" alt="Roses">
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev-propose">Previous</button>
+            <button id="next-propose">Next</button>
+        </div>
+    </div>
+
+    <!-- Chocolate Day -->
+    <div class="page" id="chocolate-day"
+        style="background-image: url('https://source.unsplash.com/featured/?chocolates,valentine');">
+        <div class="particles" id="particles-chocolate"></div>
+        <div class="floating" style="top: 12%; left: 18%;">🍫</div>
+        <div class="floating" style="top: 18%; right: 22%;">😘</div>
+        <div class="glass">
+            <h1>Chocolate Day</h1>
+            <div class="love-letter">
+                Sweet like chocolate, your love melts my heart. Let's indulge in this sweetness together. Happy
+                Chocolate Day!
+            </div>
+            <div class="images">
+                <img src="images/chocolate1.jpg" alt="Chocolate">
+                <img src="images/chocolate2.jpg" alt="Chocolate">
+                <img src="images/chocolate3.jpeg" alt="Chocolate">
+                <img src="images/chocolate4.jpg" alt="Chocolate">
+
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev-chocolate">Previous</button>
+            <button id="next-chocolate">Next</button>
+        </div>
+    </div>
+
+    <!-- Teddy Day -->
+    <div class="page" id="teddy-day"
+        style="background-image: url('https://source.unsplash.com/featured/?teddy-bear,valentine');">
+        <div class="particles" id="particles-teddy"></div>
+        <div class="floating" style="top: 14%; left: 16%;">🧸</div>
+        <div class="floating" style="top: 22%; right: 18%;">🤗</div>
+        <div class="glass">
+            <h1>Teddy Day</h1>
+            <div class="love-letter">
+                Like a teddy bear, I want to hold you close forever. Your hugs are my comfort. Happy Teddy Day!
+            </div>
+            <div class="images">
+                <img src="images/teddy1.jpeg" alt="Teddy">
+                <img src="images/teddy2.jpg" alt="Teddy">
+                <img src="images/teddy3.jpg" alt="Teddy">
+                <img src="images/teddy4.jpg" alt="Teddy">
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev-teddy">Previous</button>
+            <button id="next-teddy">Next</button>
+        </div>
+    </div>
+
+    <!-- Promise Day -->
+    <div class="page" id="promise-day"
+        style="background-image: url('https://source.unsplash.com/featured/?promise,romance');">
+        <div class="particles" id="particles-promise"></div>
+        <div class="floating" style="top: 16%; left: 24%;">🤝</div>
+        <div class="floating" style="top: 20%; right: 16%;">💑</div>
+        <div class="glass">
+            <h1>Promise Day</h1>
+            <div class="love-letter">
+                I promise to love you through every storm and sunshine. Forever yours. Happy Promise Day!
+            </div>
+            <div class="images">
+                <img src="images/promise1.jpg" alt="Promise">
+                <img src="images/promise2.jpg" alt="Promise">
+                <img src="images/promise3.jpg" alt="Promise">
+                <img src="images/promise4.jpeg" alt="Promise">
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev-promise">Previous</button>
+            <button id="next-promise">Next</button>
+        </div>
+    </div>
+
+    <!-- Hug Day -->
+    <div class="page" id="hug-day"
+        style="background-image: url('https://source.unsplash.com/featured/?hug,valentine');">
+        <div class="particles" id="particles-hug"></div>
+        <div class="floating" style="top: 13%; left: 22%;">🤗</div>
+        <div class="floating" style="top: 19%; right: 24%;">💕</div>
+        <div class="glass">
+            <h1>Hug Day</h1>
+            <div class="love-letter">
+                Your hugs are my safe haven. Let's embrace this love tightly. Happy Hug Day!
+            </div>
+            <div class="images">
+                <img src="images/hug.gif" alt="Hug">
+                <img src="images/hug1.jpg" alt="Hug">
+                <img src="images/hug2.jpg" alt="Hug">
+                <img src="images/hug3.jpg" alt="Hug">
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev-hug">Previous</button>
+            <button id="next-hug">Next</button>
+        </div>
+    </div>
+
+    <!-- Kiss Day -->
+    <div class="page" id="kiss-day"
+        style="background-image: url('https://source.unsplash.com/featured/?kiss,valentine');">
+        <div class="particles" id="particles-kiss"></div>
+        <div class="floating" style="top: 17%; left: 20%;">💋</div>
+        <div class="floating" style="top: 21%; right: 19%;">😘</div>
+        <div class="glass">
+            <h1>Kiss Day</h1>
+            <div class="love-letter">
+                Your kisses ignite the fire in my soul. Let's seal our love with passion. Happy Kiss Day!
+            </div>
+            <div class="images">
+                <img src="images/kiss.gif" alt="kiss">
+                <img src="images/kiss2.jpg" alt="kiss">
+                <img src="images/kiss1.png" alt="kiss">
+                <img src="images/kiss3.gif" alt="kiss">
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev-kiss">Previous</button>
+            <button id="next-kiss">Next</button>
+        </div>
+    </div>
+
+    <!-- Valentine's Day -->
+    <div class="page" id="valentine-day"
+        style="background-image: url('https://source.unsplash.com/featured/?valentine,celebration');">
+        <div class="particles" id="particles-valentine"></div>
+        <div class="floating" style="top: 11%; left: 23%;">💖</div>
+        <div class="floating" style="top: 23%; right: 21%;">🎉</div>
+        <div class="glass">
+            <h1>Valentine's Day</h1>
+            <div class="love-letter">
+                Today and always, you are my everything. Happy Valentine's Day, my love!
+            </div>
+            <div class="images">
+                <img src="images/1.gif" alt="valentine">
+                <img src="images/2.jpg" alt="valentine">
+                <img src="images/3.gif" alt="valentine">
+                <img src="images/4.jpg" alt="valentine">
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev-valentine">Previous</button>
+            <button id="next-valentine" disabled>Next</button>
+        </div>
+    </div>
+</body>
+<script>
+    const pages = ['rose-day', 'propose-day', 'chocolate-day', 'teddy-day', 'promise-day', 'hug-day', 'kiss-day', 'valentine-day'];
+    let currentPage = 0;
+
+    function showPage(index) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pages[index]).classList.add('active');
+        currentPage = index;
+    }
+
+    // Navigation event listeners
+    document.getElementById('next-rose').addEventListener('click', () => showPage(1));
+    document.getElementById('prev-propose').addEventListener('click', () => showPage(0));
+    document.getElementById('next-propose').addEventListener('click', () => showPage(2));
+    document.getElementById('prev-chocolate').addEventListener('click', () => showPage(1));
+    document.getElementById('next-chocolate').addEventListener('click', () => showPage(3));
+    document.getElementById('prev-teddy').addEventListener('click', () => showPage(2));
+    document.getElementById('next-teddy').addEventListener('click', () => showPage(4));
+    document.getElementById('prev-promise').addEventListener('click', () => showPage(3));
+    document.getElementById('next-promise').addEventListener('click', () => showPage(5));
+    document.getElementById('prev-hug').addEventListener('click', () => showPage(4));
+    document.getElementById('next-hug').addEventListener('click', () => showPage(6));
+    document.getElementById('prev-kiss').addEventListener('click', () => showPage(5));
+    document.getElementById('next-kiss').addEventListener('click', () => showPage(7));
+    document.getElementById('prev-valentine').addEventListener('click', () => showPage(6));
+
+    // Particle effects for each page
+    function createParticles(containerId, emoji) {
+        const container = document.getElementById(containerId);
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.innerHTML = emoji;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(particle);
+        }
+    }
+
+    // Initialize particles on page load
+    createParticles('particles-rose', '🌹');
+    createParticles('particles-propose', '💍');
+    createParticles('particles-chocolate', '🍫');
+    createParticles('particles-teddy', '🧸');
+    createParticles('particles-promise', '🤝');
+    createParticles('particles-hug', '🤗');
+    createParticles('particles-kiss', '💋');
+    createParticles('particles-valentine', '💖');
+</script>
+</body>
+
+</html>
